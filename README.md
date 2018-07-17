@@ -3,7 +3,7 @@ Simple component to handle file selection for upload.
 
 ## Installation
 
-Copy ```UploadButton.vue``` to part of our project and require/import if using bundler.
+Copy ```FileUploadComponent.vue``` to part of your project and require/import if using bundler.
 
 Tested to work with Vue 2.5.x and Vuetify 1.0.3 
 
@@ -12,36 +12,31 @@ Tested to work with Vue 2.5.x and Vuetify 1.0.3
 In your view or component import file:
 
 ```
-import UploadButton from './UploadButton';
+import VFileUpload from './FileUploadComponent';
 ```
 
 add it to components section:
 
 ```  export default {
     components: {
-      UploadButton,
+      VFileUpload,
 ```
 
-Set title of the button and callback function via props:
+Use props to customize the field:
 
 ```
-<upload-button title="Browse" :selectedCallback="fileSelectedFunc">
-</upload-button>
+<v-file-upload
+        label="Photo"
+        accept="image/jpeg"
+        v-model="photo"
+        :error-messages="errors.collect('photo')"
+        required></v-file-upload>
 ```
 
-### Callback function
+It will act as any other field and store the file information on the model specified(here `photo`).
 
-Vital part of functionality is the callback function. When you have selected file or cancelled new selection you will get callback with the given file (as ```File``` -object). File can be then passed to e.g. to Vue-Resource to do the actual upload. Callback will send ```null``` if selection of new file was cancelled.
-More info about [File -object](https://developer.mozilla.org/en-US/docs/Web/API/File) in the MDN. 
-
-### Styling
-If you want to modify styles do it in the component file directly. Currently defines as:
-
-```
-<v-btn dark class="btn--dark-flat-focused jbtn-file">
-```
-
-&copy; 2018 Janne Hämäläinen.
+## Screenshot
+![Screenshot](https://raw.githubusercontent.com/eAdnan007/vuetify-upload-btn/master/screenshot.png)
  
 ## License 
 Released under [MIT](https://opensource.org/licenses/MIT) license.
